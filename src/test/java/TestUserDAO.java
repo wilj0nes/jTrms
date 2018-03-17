@@ -1,11 +1,5 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Savepoint;
-
 import DAOs.UserDAO;
-import DB_Objects.User;
-import org.apache.log4j.Logger;
+import Controller.User;
 import org.junit.Test;
 
 public class TestUserDAO {

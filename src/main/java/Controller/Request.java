@@ -1,4 +1,4 @@
-package DB_Objects;
+package Controller;
 
 import oracle.sql.DATE;
 
@@ -19,6 +19,7 @@ public class Request {
     private Blob blob;
 
     private String status;
+
     private int ownerID;
 
     private String type;
@@ -40,6 +41,7 @@ public class Request {
                    int typeID,
                    String rejectionReason){
         this.setId(id);
+        this.setCity(city);
         this.setState(state);
         this.setZip(zip);
         this.setCost(cost);
@@ -53,6 +55,8 @@ public class Request {
         this.setTypeID(typeID);
         this.setRejectionReason(rejectionReason);
     }
+
+    public Request(){};
 
     public int getId() {
         return id;

@@ -35,7 +35,7 @@ public class ConnectionFactory {
                     prop.getProperty("usr"),
                     prop.getProperty("psw"));
             conn.setAutoCommit(true);
-            System.out.println(conn);
+            //System.out.println(conn);
         }
         catch (SQLException e) {
             e.printStackTrace();

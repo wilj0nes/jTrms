@@ -1,8 +1,6 @@
-package DB_Objects;
+package Controller;
 
 import DAOs.UserDAO;
-
-import java.sql.SQLException;
 
 public class Trms {
 

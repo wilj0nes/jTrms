@@ -1,4 +1,4 @@
-package DB_Objects;
+package Controller;
 
 public class User {
 

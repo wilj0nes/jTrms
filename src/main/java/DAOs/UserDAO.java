@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import CF.ConnectionFactory;
-import DB_Objects.User;
-import oracle.jdbc.proxy.annotation.Pre;
-import org.apache.log4j.Logger;
+import Controller.User;
 
 public class UserDAO {
 
@@ -72,11 +70,11 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 user = new User(rs.getInt("USER_ID"),
-                        rs.getString("FIRSTNAME"),
-                        rs.getString("LASTNAME"),
-                        rs.getFloat("FUNDS"),
-                        rs.getInt("USER_TYPE"),
-                        rs.getString("EMAIL"));
+                                rs.getString("FIRSTNAME"),
+                                rs.getString("LASTNAME"),
+                                rs.getFloat("FUNDS"),
+                                rs.getInt("USER_TYPE"),
+                                rs.getString("EMAIL"));
             }
         }
         catch (SQLException e){
@@ -120,5 +118,4 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
-
 }
