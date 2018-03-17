@@ -21,4 +21,18 @@ public class TestUserDAO {
         UserDAO d = new UserDAO();
         d.readDB();
     }
+
+    @Test
+    public void testFindUserById(){
+        UserDAO d = new UserDAO();
+        User u;
+        u = d.findUserById(83);
+        System.out.println(u.getFirstName());
+    }
+
+    @Test
+    public void testUpdateUserFunds(){
+        UserDAO d = new UserDAO();
+        d.updateUserFunds(83, 1000);
+    }
 }

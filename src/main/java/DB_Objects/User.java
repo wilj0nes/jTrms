@@ -18,6 +18,8 @@ public class User {
         this.setEmail(email);
     }
 
+    public User(){}
+
     public int getId() {
         return id;
     }

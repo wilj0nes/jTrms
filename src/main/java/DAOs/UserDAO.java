@@ -85,6 +85,24 @@ public class UserDAO {
         return user;
     }
 
+    public void updateUserFunds(int id, float funds){
+        String sql;
+        PreparedStatement ps;
+        Connection conn;
+        conn = ConnectionFactory.getInstance().getConnection();
+        sql = "UPDATE USERS SET FUNDS = ? WHERE USER_ID = ? ";
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setFloat(1, funds);
+            ps.setInt(2, id);
+            ResultSet rs = ps.executeQuery();
+            //conn.commit();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public void readDB(){
         String sql;
         Connection conn;
