@@ -1,4 +1,4 @@
-package CF;
+package ConnectionFactory;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 //import org.apache.log4j.Logger;
 
 public class ConnectionFactory {

@@ -1,5 +1,5 @@
 package DAOs;
-import CF.ConnectionFactory;
+import ConnectionFactory.ConnectionFactory;
 import Controller.Request;
 
 import java.sql.*;
@@ -90,7 +90,6 @@ public class RequestDAO {
         }
         return request;
     }
-
 
     public String getRequestType(int typeId){
         String s = "";
