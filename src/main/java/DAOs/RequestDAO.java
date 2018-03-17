@@ -62,7 +62,6 @@ public class RequestDAO {
         PreparedStatement ps;
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
-        //language=GenericSQL
         sql = "SELECT * FROM REQUESTS WHERE REQUEST_ID = ? ";
         try{
             ps = conn.prepareStatement(sql);
@@ -119,7 +118,6 @@ public class RequestDAO {
         PreparedStatement ps;
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
-        //language=GenericSQL
         sql = "SELECT FORMAT_TYPE FROM GRADING_FORMAT WHERE FORMAT_ID = ? ";
         try{
             ps = conn.prepareStatement(sql);
@@ -133,6 +131,42 @@ public class RequestDAO {
             e.printStackTrace();
         }
         return s;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public void updateRejection(int id, String reason){
+        String sql;
+        PreparedStatement ps;
+        Connection conn;
+        conn = ConnectionFactory.getInstance().getConnection();
+        sql = "UPDATE REQUESTS SET REJECTION_REASON = ? WHERE REQUEST_ID = ? ";
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, reason);
+            ps.setInt(2, id);
+            ResultSet rs = ps.executeQuery();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
+    public void updateStatus(int id, String status){
+        String sql;
+        PreparedStatement ps;
+        Connection conn;
+        conn = ConnectionFactory.getInstance().getConnection();
+        sql = "UPDATE REQUESTS SET STATUS = ? WHERE REQUEST_ID = ? ";
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setInt(2, id);
+            ResultSet rs = ps.executeQuery();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 }

@@ -5,11 +5,12 @@ import org.junit.Test;
 //import static java.sql.JDBCType.NULL;
 
 public class TestRequestDAO {
+    private RequestDAO requestDAO = new RequestDAO();
 
     @Test
     public void testNewRequest(){
-        RequestDAO d = new RequestDAO();
-        d.newRequest("testCity",
+        requestDAO = new RequestDAO();
+        requestDAO.newRequest("testCity",
                     "testState",
                     12344,
                     234,
@@ -24,9 +25,21 @@ public class TestRequestDAO {
 
     @Test
     public void TestFindRequestById(){
-        RequestDAO d = new RequestDAO();
+        requestDAO = new RequestDAO();
         Request r;
-        r = d.findRequestById(2);
+        r = requestDAO.findRequestById(2);
         System.out.println(r.getCity());
+    }
+
+    @Test
+    public void TestSetRejection(){
+        requestDAO = new RequestDAO();
+        requestDAO.updateRejection(2, "because I said so");
+    }
+
+    @Test
+    public void TestUpdateStatus(){
+        requestDAO = new RequestDAO();
+        requestDAO.updateStatus(2, "the status is status");
     }
 }

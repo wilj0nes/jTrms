@@ -94,7 +94,6 @@ public class UserDAO {
             ps.setFloat(1, funds);
             ps.setInt(2, id);
             ResultSet rs = ps.executeQuery();
-            //conn.commit();
         }
         catch (SQLException e){
             e.printStackTrace();
