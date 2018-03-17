@@ -6,6 +6,9 @@ import java.sql.*;
 
 public class RequestDAO {
 
+    //TODO do something about the date the request was made
+    //TODO maybe do something about Blobs
+
     public void newRequest(String city,
                            String state,
                            int zip,
@@ -21,8 +24,6 @@ public class RequestDAO {
         PreparedStatement ps;
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
-
-        //language=GenericSQL
         sql = "INSERT INTO REQUESTS (DATE_CREATED, \n" +
                 "                      CITY, \n" +
                 "                      STATE, \n" +
@@ -168,5 +169,4 @@ public class RequestDAO {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Revature login</title>
+    <link rel="stylesheet" href="src/css/style.css"/>
+    <link rel="stylesheet" href="src/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="src/css/material.min.css">
+    <script src="src/js/material.min.js"></script>
+    <script src="src/js/tuitionForm.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body class="background">
+<div class="form-container demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="centered-container">
+        <h4>Tuition Reimbursement form</h4>
+    </div>
+    <form>
+        <div class="form-row">
+            <div class="col-md-6 mb-4">
+                <label for="firstname">First name</label>
+                <input type="text" class="form-control" id="firstname" placeholder=" First name" value="">
+            </div>
+            <div class="col-md-6 mb-4">
+                <label for="firstname">Last name</label>
+                <input type="text" class="form-control" id="lastname" placeholder=" Last name">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-4 form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" placeholder=" City">
+            </div>
+            <div class="col-md-3 mb-4 form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state" placeholder=" State">
+            </div>
+            <div class="col-md-3 mb-4 form-group">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder=" Zip">
+            </div>
+            <div class="col-md-10 mb-4 form-group">
+                <label id="desc">Description</label>
+                <textarea id="description" class="form-control" name="location"></textarea>
+            </div>
+            <div title="The date and time of the event" class="col-md-6 mb-4 form-group">
+                <label id="username">Date and Time</label>
+                <input class=" form-control" type="datetime-local" id="date-time" name="username"/>
+            </div>
+            <div class="col-md-6 mb-4 form-group">
+                <label for="cost">Cost</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="$">$</span>
+                    </div>
+                    <input type="number"
+                           class="form-control"
+                           id="cost"
+                           min="0"
+                           placeholder=" Cost"
+                           aria-describedby="inputGroupPrepend2">
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 form-group">
+                <label for="grading-format">Grading format</label>
+                <select class="form-control" id="grading-format">
+                    <option>Letter grade</option>
+                    <option>Pass/Fail</option>
+                    <option>Percentage</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-4 form-group">
+                <label for="event-type">Type of event</label>
+                <select class="form-control" id="event-type">
+                    <option>University courses</option>
+                    <option>Seminars</option>
+                    <option>Certification preparation class</option>
+                    <option>Certification</option>
+                    <option>Technical training</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="col-md-10 mb-4 form-group">
+                <label for="files">Choose file</label>
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="files" multiple>
+                        <label class="custom-file-label" for="files">Choose file</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" id="submit" type="button">Submit</button>
+        <!--<button class="btn btn-primary" id="submit" type="submit">Submit</button>-->
+
+    </form>
+    <!--TODO make "other" modals-->
+</div>
+</body>
+</html>
