@@ -1,5 +1,5 @@
 import DAOs.UserDAO;
-import Controller.User;
+import DataObjects.User;
 import org.junit.Test;
 
 public class TestUserDAO {

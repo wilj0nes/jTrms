@@ -1,6 +1,6 @@
 package DAOs;
 import ConnectionFactory.ConnectionFactory;
-import Controller.Request;
+import DataObjects.Request;
 
 import java.sql.*;
 

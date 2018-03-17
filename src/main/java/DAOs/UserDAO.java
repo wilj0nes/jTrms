@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import ConnectionFactory.ConnectionFactory;
-import Controller.User;
+import DataObjects.User;
 
 public class UserDAO {
 
@@ -21,7 +21,7 @@ public class UserDAO {
             ps.setString(1, first);
             ps.setString(2, last);
             ps.setFloat(3, funds);
-            ps.setInt(4, type);
+            ps.setInt(4, type);  //TODO this needs to populate with the string user_type
             ps.setString(5, email);
             ResultSet resultSet = ps.executeQuery();
         }

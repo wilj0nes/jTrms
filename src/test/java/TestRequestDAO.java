@@ -1,5 +1,5 @@
 import DAOs.RequestDAO;
-import Controller.Request;
+import DataObjects.Request;
 import org.junit.Test;
 
 //import static java.sql.JDBCType.NULL;

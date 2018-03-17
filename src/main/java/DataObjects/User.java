@@ -1,4 +1,4 @@
-package Controller;
+package DataObjects;
 
 public class User {
 
