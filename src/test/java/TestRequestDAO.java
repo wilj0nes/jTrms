@@ -2,7 +2,6 @@ import DAOs.RequestDAO;
 import DataObjects.Request;
 import org.junit.Test;
 
-//import static java.sql.JDBCType.NULL;
 
 public class TestRequestDAO {
     private RequestDAO requestDAO = new RequestDAO();
@@ -10,13 +9,13 @@ public class TestRequestDAO {
     @Test
     public void testNewRequest(){
         requestDAO = new RequestDAO();
-        requestDAO.newRequest("123 fake address",
-                    "testCity",
-                    "testState",
-                    12344,
-                    234,
+        requestDAO.newRequest("123 something",
+                    "city",
+                    "PA",
+                    39392,
+                    2333334,
                     2,
-                    "test JUSTIFICATION",
+                    "justice",
                     0,
                     "test status",
                     83,
@@ -28,8 +27,8 @@ public class TestRequestDAO {
     public void TestFindRequestById(){
         requestDAO = new RequestDAO();
         Request r;
-        r = requestDAO.findRequestById(2);
-        System.out.println(r.getCity());
+        r = requestDAO.findRequestById(21);
+        System.out.println("\n" + r.getId());
     }
 
     @Test

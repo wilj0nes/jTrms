@@ -63,7 +63,7 @@ public class Request {
 
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -79,7 +79,7 @@ public class Request {
     }
 
     public DATE getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(DATE date) {
@@ -87,7 +87,7 @@ public class Request {
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(String city) {
@@ -95,7 +95,7 @@ public class Request {
     }
 
     public String getState() {
-        return state;
+        return this.state;
     }
 
     public void setState(String state) {
@@ -103,7 +103,7 @@ public class Request {
     }
 
     public int getZip() {
-        return zip;
+        return this.zip;
     }
 
     public void setZip(int zip) {
@@ -111,7 +111,7 @@ public class Request {
     }
 
     public float getCost() {
-        return cost;
+        return this.cost;
     }
 
     public void setCost(float cost) {
@@ -119,7 +119,7 @@ public class Request {
     }
 
     public String getFormat() {
-        return format;
+        return this.format;
     }
 
     public void setFormat(String format) {
@@ -127,7 +127,7 @@ public class Request {
     }
 
     public String getJustification() {
-        return justification;
+        return this.justification;
     }
 
     public void setJustification(String justification) {
@@ -135,7 +135,7 @@ public class Request {
     }
 
     public int getBlobID() {
-        return blobID;
+        return this.blobID;
     }
 
     public void setBlobID(int blobID) {
@@ -143,7 +143,7 @@ public class Request {
     }
 
     public Blob getBlob() {
-        return blob;
+        return this.blob;
     }
 
     public void setBlob(Blob blob) {
@@ -151,7 +151,7 @@ public class Request {
     }
 
     public String getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(String status) {
@@ -159,7 +159,7 @@ public class Request {
     }
 
     public int getOwnerID() {
-        return ownerID;
+        return this.ownerID;
     }
 
     public void setOwnerID(int ownerID) {
@@ -167,7 +167,7 @@ public class Request {
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public void setType(String type) {
@@ -175,7 +175,7 @@ public class Request {
     }
 
     public int getTypeID() {
-        return typeID;
+        return this.typeID;
     }
 
     public void setTypeID(int typeID) {
@@ -183,7 +183,7 @@ public class Request {
     }
 
     public String getRejectionReason() {
-        return rejectionReason;
+        return this.rejectionReason;
     }
 
     public void setRejectionReason(String rejectionReason) {

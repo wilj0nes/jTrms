@@ -37,7 +37,8 @@ public class RequestDAO {
                 "                      STATUS, \n" +
                 "                      USER_ID, \n" +
                 "                      REQUEST_TYPE, \n" +
-                "                      REJECTION_REASON) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                "                      REJECTION_REASON) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         try{
             ps = conn.prepareStatement(sql);
             ps.setDate(1, null);
@@ -60,6 +61,8 @@ public class RequestDAO {
         }
     }
 
+    //TODO write aFindRequestsByUserId method
+
     public Request findRequestById(int id){
         Request request = null;
         String sql;
@@ -78,13 +81,13 @@ public class RequestDAO {
                         rs.getString("STATE"),
                         rs.getInt("ZIP"),
                         rs.getFloat("COST"),
-                        this.getFormat(rs.getInt("GRADING_FORMAT")),   // format
+                        this.getFormat(rs.getInt("GRADING_FORMAT")),
                         rs.getString("JUSTIFICATION"),
                         rs.getInt("BLOB_ID"),
                         null,                                // blob, deal with this later
                         rs.getString("STATUS"),
                         rs.getInt("USER_ID"),
-                        this.getRequestType(rs.getInt("REQUEST_TYPE")),    // Request type
+                        this.getRequestType(rs.getInt("REQUEST_TYPE")),
                         rs.getInt("REQUEST_TYPE"),
                         rs.getString("REJECTION_REASON"));
             }
@@ -92,6 +95,7 @@ public class RequestDAO {
         catch (SQLException e){
             e.printStackTrace();
         }
+        //System.out.println("Returning request #: " + request.getId());
         return request;
     }
 
