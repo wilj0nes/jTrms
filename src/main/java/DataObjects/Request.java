@@ -8,6 +8,7 @@ public class Request {
     private int id;
     private DATE date; // this might not work
 
+    private String address;
     private String city;
     private String state;
     private int zip;
@@ -27,6 +28,7 @@ public class Request {
     private String rejectionReason;
 
     public Request(int id,
+                   String address,
                    String city,
                    String state,
                    int zip,
@@ -41,6 +43,7 @@ public class Request {
                    int typeID,
                    String rejectionReason){
         this.setId(id);
+        this.setAddress(address);
         this.setCity(city);
         this.setState(state);
         this.setZip(zip);
@@ -58,12 +61,21 @@ public class Request {
 
     public Request(){};
 
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAddress(){
+        return this.address;
+    }
+
+    public void setAddress(String address){
+        this.address = address;
     }
 
     public DATE getDate() {

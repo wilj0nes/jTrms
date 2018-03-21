@@ -18,30 +18,22 @@ public class Servlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //response.setStatus(200);
         System.out.println("doPost()");
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        response.setStatus(200);
-        try{
-            out.print("<h1> Hello world </h1>");
-        }
-        finally {
-            out.close();
-        }
+//        response.setContentType("text/html");
+//        PrintWriter out = response.getWriter();
+//        response.setStatus(200);
+//        out.print("<h1> Hello world </h1>");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //response.setStatus(200);
         System.out.println("doGet()");
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        response.setStatus(200);
-        try{
-            out.print("<h1> Hello world </h1>");
-        }
-        finally {
-            out.close();
-        }
+//        response.setContentType("text/html");
+//        PrintWriter out = response.getWriter();
+//        response.setStatus(200);
+//        out.append("<h1> Hello world </h1>");
     }
 
 }

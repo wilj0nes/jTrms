@@ -10,7 +10,8 @@ public class TestRequestDAO {
     @Test
     public void testNewRequest(){
         requestDAO = new RequestDAO();
-        requestDAO.newRequest("testCity",
+        requestDAO.newRequest("123 fake address",
+                    "testCity",
                     "testState",
                     12344,
                     234,

@@ -8,18 +8,17 @@ function getData(){
 }
 
 function post(){
-
-
     console.log(string);
     // document.getElementById("myButton").addEventListener("click", post(), false);
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        // console.log("ready state: " + xhr.readyState);
-        // console.log("status: " + xhr.readyState);
+        console.log("ready state: " + xhr.readyState);
+        console.log("status: " + xhr.status);
 
         if(xhr.readyState === 4 && xhr.status === 200){
-            //console.log(xhr.responseText);
+            console.log("something");
+            console.log(xhr.responseText);
             getData();
         }
 

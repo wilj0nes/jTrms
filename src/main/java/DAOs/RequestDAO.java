@@ -9,7 +9,8 @@ public class RequestDAO {
     //TODO do something about the date the request was made
     //TODO maybe do something about Blobs
 
-    public void newRequest(String city,
+    public void newRequest(String address,
+                           String city,
                            String state,
                            int zip,
                            float cost,
@@ -25,6 +26,7 @@ public class RequestDAO {
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
         sql = "INSERT INTO REQUESTS (DATE_CREATED, \n" +
+                "                      ADDRESS,\n" +
                 "                      CITY, \n" +
                 "                      STATE, \n" +
                 "                      ZIP, \n" +
@@ -35,21 +37,22 @@ public class RequestDAO {
                 "                      STATUS, \n" +
                 "                      USER_ID, \n" +
                 "                      REQUEST_TYPE, \n" +
-                "                      REJECTION_REASON) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                "                      REJECTION_REASON) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         try{
             ps = conn.prepareStatement(sql);
             ps.setDate(1, null);
-            ps.setString(2, city);
-            ps.setString(3, state);
-            ps.setInt(4, zip);
-            ps.setFloat(5, cost);
-            ps.setInt(6, formatID);
-            ps.setString(7, justification);
-            ps.setInt(8, blobID);
-            ps.setString(9, status);
-            ps.setInt(10, ownerID);
-            ps.setInt(11, typeID);
-            ps.setString(12, rejectionReason);
+            ps.setString(2, address);
+            ps.setString(3, city);
+            ps.setString(4, state);
+            ps.setInt(5, zip);
+            ps.setFloat(6, cost);
+            ps.setInt(7, formatID);
+            ps.setString(8, justification);
+            ps.setInt(9, blobID);
+            ps.setString(10, status);
+            ps.setInt(11, ownerID);
+            ps.setInt(12, typeID);
+            ps.setString(13, rejectionReason);
             ResultSet resultSet = ps.executeQuery();
         }
         catch (SQLException e){
@@ -70,6 +73,7 @@ public class RequestDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 request = new Request(rs.getInt("REQUEST_ID"),
+                        rs.getString("ADDRESS"),
                         rs.getString("CITY"),
                         rs.getString("STATE"),
                         rs.getInt("ZIP"),
