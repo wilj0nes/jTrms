@@ -13,19 +13,19 @@ function post(){
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        console.log("ready state: " + xhr.readyState);
-        console.log("status: " + xhr.status);
+        //console.log("ready state: " + xhr.readyState);
+        //console.log("status: " + xhr.status);
 
         if(xhr.readyState === 4 && xhr.status === 200){
-            console.log("something");
+            console.log("somethingit ag");
             console.log(xhr.responseText);
             getData();
         }
 
     };
 
-    xhr.open("GET", "/servlet", true);
-    xhr.send();
+    xhr.open("GET", "/s", true);
+    xhr.send("Send me");
 }
 
 

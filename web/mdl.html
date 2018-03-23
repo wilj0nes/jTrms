@@ -1,0 +1,194 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+<head>
+    <!-- Material Design Lite -->
+    <script href="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/material.min.css">
+    <script src="js/material.min.js"></script>
+    <!--<script src="js/tuitionForm.js"></script>-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<!-- Simple header with scrollable tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Title</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#scroll-tab-1" class="mdl-layout__tab is-active">New request </a>
+            <a href="#scroll-tab-2" class="mdl-layout__tab">All requests</a>
+            <a href="#scroll-tab-3" class="mdl-layout__tab">Something</a>
+            <a href="#scroll-tab-5" class="mdl-layout__tab">Tab 4</a>
+            <a href="#scroll-tab-6" class="mdl-layout__tab">Tab 5</a>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+    </div>
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">     <!--New request-->
+            <div class="page-content">
+                <div class="centered-container">
+                    <h4>Tuitionss Reimbursement form</h4>
+                </div>
+                <form class="new-request-form">
+                    <div class="form-row">
+                        <div class="col-md-10 mb-4">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" placeholder=" Email" value="">
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-4">
+                            <label for="firstname">First name</label>
+                            <input type="text" class="form-control" id="firstname" placeholder=" First name" value="">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="firstname">Last name</label>
+                            <input type="text" class="form-control" id="lastname" placeholder=" Last name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-4 form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" placeholder=" City">
+                        </div>
+                        <div class="col-md-3 mb-4 form-group">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" id="state" placeholder=" State">
+                        </div>
+                        <div class="col-md-3 mb-4 form-group">
+                            <label for="zip">Zip</label>
+                            <input type="text" class="form-control" id="zip" placeholder=" Zip">
+                        </div>
+                        <div class="col-md-10 mb-4 form-group">
+                            <label id="desc">Description</label>
+                            <textarea id="description" class="form-control" name="location"></textarea>
+                        </div>
+                        <div title="The date and time of the event" class="col-md-6 mb-4 form-group">
+                            <label id="username">Date and Time</label>
+                            <input class=" form-control" type="datetime-local" id="date-time" name="username"/>
+                        </div>
+                        <div class="col-md-6 mb-4 form-group">
+                            <label for="cost">Cost</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="$">$</span>
+                                </div>
+                                <input type="number"
+                                       class="form-control"
+                                       id="cost"
+                                       min="0"
+                                       placeholder=" Cost"
+                                       aria-describedby="inputGroupPrepend2">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4 form-group">
+                            <label for="grading-format">Grading format</label>
+                            <select class="form-control" id="grading-format">
+                                <option>Letter grade</option>
+                                <option>Pass/Fail</option>
+                                <option>Percentage</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-4 form-group">
+                            <label for="event-type">Type of event</label>
+                            <select class="form-control" id="event-type">
+                                <option>University courses</option>
+                                <option>Seminars</option>
+                                <option>Certification preparation class</option>
+                                <option>Certification</option>
+                                <option>Technical training</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-10 mb-4 form-group">
+                            <label for="files">Choose file</label>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="files" multiple>
+                                    <label class="custom-file-label" for="files">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="submit" type="button">Submit</button>
+                    <!--<button class="btn btn-primary" id="submit" type="submit">Submit</button>-->
+
+                </form>
+                <!--TODO make "other" modals-->
+
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-2">               <!--All requests-->
+            <div class="page-content">
+                <table class="all-requests mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Material</th>
+                        <th>Quantity</th>
+                        <th>Unit price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+                        <td>25</td>
+                        <td>$2.90</td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
+                        <td>50</td>
+                        <td>$1.25</td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
+                        <td>10</td>
+                        <td>$2.35</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+            <div class="page-content">3</div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-4">
+            <div class="page-content">4</div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-5">
+            <div class="page-content">5</div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-6">
+            <div class="page-content">6</div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

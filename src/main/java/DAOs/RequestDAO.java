@@ -62,7 +62,11 @@ public class RequestDAO {
     }
 
     //TODO write aFindRequestsByUserId method
+    @SuppressWarnings("Duplicates")
 
+    public Request findRequestByUserId(int userId){}
+
+    @SuppressWarnings("Duplicates")
     public Request findRequestById(int id){
         Request request = null;
         String sql;
@@ -84,7 +88,7 @@ public class RequestDAO {
                         this.getFormat(rs.getInt("GRADING_FORMAT")),
                         rs.getString("JUSTIFICATION"),
                         rs.getInt("BLOB_ID"),
-                        null,                                // blob, deal with this later
+                        null,                                // TODO, deal with this later
                         rs.getString("STATUS"),
                         rs.getInt("USER_ID"),
                         this.getRequestType(rs.getInt("REQUEST_TYPE")),
@@ -95,7 +99,9 @@ public class RequestDAO {
         catch (SQLException e){
             e.printStackTrace();
         }
-        //System.out.println("Returning request #: " + request.getId());
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
         return request;
     }
 

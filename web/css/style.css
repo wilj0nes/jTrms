@@ -3,6 +3,14 @@
     margin-bottom: 20px;
 }
 
+.all-requests{
+    margin:1em auto;
+}
+
+.new-request-form{
+    margin:1em auto;
+}
+
 .brand{
     text-align: center;
     margin-top: 120px;
@@ -19,6 +27,9 @@
 .centered-container{
     width: 460px;
     margin: 1px auto 16px;
+}
+.new-request-form{
+    max-width: 70%;
 }
 
 .demo-card-wide.mdl-card {
@@ -80,3 +91,4 @@ input.currency {
 .contain{
     display: none;
 }
+
