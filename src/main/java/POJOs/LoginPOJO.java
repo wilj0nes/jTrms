@@ -1,14 +1,14 @@
-package Servlets;
+package POJOs;
 
-public class InfoPOJO {
+public class LoginPOJO {
     private String emailInput;
     private String passInput;
 
-    public InfoPOJO(){
+    public LoginPOJO(){
         super();
     }
 
-    public InfoPOJO(String emailInput, String passInput){
+    public LoginPOJO(String emailInput, String passInput){
         this.setEmailInput(emailInput);
         this.setPassInput(passInput);
     }

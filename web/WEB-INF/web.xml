@@ -14,4 +14,12 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/s</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FormServlet</servlet-name>
+        <servlet-class>Servlets.FormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormServlet</servlet-name>
+        <url-pattern>/f</url-pattern>
+    </servlet-mapping>
 </web-app>
