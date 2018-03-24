@@ -1,14 +1,8 @@
+var string, email, pass;
 
-var string;
-
-function getData(){
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-    string = "[email: " + email.value + ", Password: " + password.value + "]";
-}
 
 function post(){
-    console.log(string);
+    //console.log("getData()");
     // document.getElementById("myButton").addEventListener("click", post(), false);
 
     var xhr = new XMLHttpRequest();
@@ -17,19 +11,26 @@ function post(){
         //console.log("status: " + xhr.status);
 
         if(xhr.readyState === 4 && xhr.status === 200){
-            console.log("somethingit ag");
-            console.log(xhr.responseText);
-            getData();
+            console.log("response text: " + xhr.responseText);
+            //getData();
         }
-
     };
 
-    xhr.open("GET", "/s", true);
-    xhr.send("Send me");
+    //console.log(string);
+    xhr.open("POST", "/s", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("InfoPOJO=" + JSON.stringify({emailInput:email, passInput:pass}));
+}
+
+function getData(){
+    email = document.getElementById("email").value;
+    pass = document.getElementById("password").value;
+    string = "[email: " + email + ", Password: " + email + "]";
+    console.log(string);
+    post();
 }
 
 
-
 window.onload = function () {
-    document.getElementById("myButton").addEventListener("click", post());
+    document.getElementById("myButton").addEventListener("click", getData);
 };

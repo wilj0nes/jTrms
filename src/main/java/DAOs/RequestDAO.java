@@ -61,10 +61,6 @@ public class RequestDAO {
         }
     }
 
-    //TODO write aFindRequestsByUserId method
-    @SuppressWarnings("Duplicates")
-
-    public Request findRequestByUserId(int userId){}
 
     @SuppressWarnings("Duplicates")
     public Request findRequestById(int id){

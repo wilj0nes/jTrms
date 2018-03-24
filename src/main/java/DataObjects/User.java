@@ -8,14 +8,16 @@ public class User {
     private float funds;
     private int type;
     private String email;
+    private String password;
 
-    public User(int id, String firstName, String lastName, float funds, int type, String email){
+    public User(int id, String firstName, String lastName, float funds, int type, String email, String password){
         this.setId(id);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setFunds(funds);
         this.setType(type);
         this.setEmail(email);
+        this.setPassword(password);
     }
 
     public User(){}
@@ -66,5 +68,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public String getPassword(String password){
+        return this.password;
     }
 }

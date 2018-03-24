@@ -10,12 +10,12 @@ import DataObjects.User;
 
 public class UserDAO {
 
-    public void newUSER(String first, String last, float funds, int type, String email){
+    public void newUSER(String first, String last, float funds, int type, String email, String password){
         String sql;
         PreparedStatement ps;
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
-        sql = "INSERT INTO USERS (FIRSTNAME, LASTNAME, FUNDS, USER_TYPE, EMAIL) VALUES (?, ?, ?, ?, ?) ";
+        sql = "INSERT INTO USERS (FIRSTNAME, LASTNAME, FUNDS, USER_TYPE, EMAIL, PASSWORD) VALUES (?, ?, ?, ?, ?, ?) ";
         try{
             ps = conn.prepareStatement(sql);
             ps.setString(1, first);
@@ -23,6 +23,7 @@ public class UserDAO {
             ps.setFloat(3, funds);
             ps.setInt(4, type);  //TODO this needs to populate with the string user_type
             ps.setString(5, email);
+            ps.setString(6, password);
             ResultSet resultSet = ps.executeQuery();
         }
         catch (SQLException e){
@@ -31,16 +32,17 @@ public class UserDAO {
     }
 
     @SuppressWarnings("Duplicates")
-    public User findUserByEmail(String email){
+    public User findUserByEmailAndPassword(String email, String password){
         User user = null;
         String sql;
         PreparedStatement ps;
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
-        sql = "SELECT * FROM USERS WHERE EMAIL = ? ";
+        sql = "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?  ";
         try{
             ps = conn.prepareStatement(sql);
             ps.setString(1,email);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 user = new User(rs.getInt("USER_ID"),
@@ -48,7 +50,8 @@ public class UserDAO {
                                 rs.getString("LASTNAME"),
                                 rs.getFloat("FUNDS"),
                                 rs.getInt("USER_TYPE"),
-                                rs.getString("EMAIL"));
+                                rs.getString("EMAIL"),
+                                rs.getString("PASSWORD"));
             }
         }
         catch (SQLException e){
@@ -74,7 +77,8 @@ public class UserDAO {
                                 rs.getString("LASTNAME"),
                                 rs.getFloat("FUNDS"),
                                 rs.getInt("USER_TYPE"),
-                                rs.getString("EMAIL"));
+                                rs.getString("EMAIL"),
+                                rs.getString("PASSWORD"));
             }
         }
         catch (SQLException e){

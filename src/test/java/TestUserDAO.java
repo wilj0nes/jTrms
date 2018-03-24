@@ -7,7 +7,7 @@ public class TestUserDAO {
     @Test
     public void testNewUser(){
         UserDAO d = new UserDAO();
-        d.newUSER("testFirst2", "testLast2", 23, 2, "email2@email.com");
+        d.newUSER("testFirst2", "testLast2", 23, 2, "email2@email.com", "password");
     }
 
     @Test
