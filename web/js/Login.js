@@ -18,8 +18,14 @@ function post(){
         //console.log("status: " + xhr.status);
 
         if(xhr.readyState === 4 && xhr.status === 200){
-            console.log("response text: " + xhr.responseText);
+            //console.log("response text: " + xhr.responseText);
             //getData();
+            if(xhr.responseText === "valid"){
+                window.location.replace('mdl.html');
+            }
+            else{
+                window.location.replace('index.html');
+            }
         }
     };
 
