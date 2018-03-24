@@ -3,6 +3,7 @@ import ConnectionFactory.ConnectionFactory;
 import DataObjects.Request;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class RequestDAO {
 
@@ -61,6 +62,49 @@ public class RequestDAO {
         }
     }
 
+    public ArrayList<Request> getUserRequests(int userId){
+        ArrayList<Request> requestArrayList = new ArrayList<Request>();
+        String sql;
+        PreparedStatement ps;
+        Connection conn;
+        conn = ConnectionFactory.getInstance().getConnection();
+        //language=GenericSQL
+        sql = "SELECT * FROM REQUESTS WHERE REQUESTS.USER_ID = ? ";
+
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Request request = new Request(rs.getInt("REQUEST_ID"),
+                        rs.getString("ADDRESS"),
+                        rs.getString("CITY"),
+                        rs.getString("STATE"),
+                        rs.getInt("ZIP"),
+                        rs.getFloat("COST"),
+                        this.getFormat(rs.getInt("GRADING_FORMAT")),
+                        rs.getString("JUSTIFICATION"),
+                        rs.getInt("BLOB_ID"),
+                        null,                                // TODO, deal with this later
+                        rs.getString("STATUS"),
+                        rs.getInt("USER_ID"),
+                        this.getRequestType(rs.getInt("REQUEST_TYPE")),
+                        rs.getInt("REQUEST_TYPE"),
+                        rs.getString("REJECTION_REASON")
+                );
+                requestArrayList.add(request);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+
+        return requestArrayList;
+    }
 
     @SuppressWarnings("Duplicates")
     public Request findRequestById(int id){
@@ -89,7 +133,8 @@ public class RequestDAO {
                         rs.getInt("USER_ID"),
                         this.getRequestType(rs.getInt("REQUEST_TYPE")),
                         rs.getInt("REQUEST_TYPE"),
-                        rs.getString("REJECTION_REASON"));
+                        rs.getString("REJECTION_REASON")
+                );
             }
         }
         catch (SQLException e){

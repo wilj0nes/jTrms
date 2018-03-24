@@ -189,4 +189,26 @@ public class Request {
     public void setRejectionReason(String rejectionReason) {
         this.rejectionReason = rejectionReason;
     }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "id=" + id +
+                ", date=" + date +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip=" + zip +
+                ", cost=" + cost +
+                ", format='" + format + '\'' +
+                ", justification='" + justification + '\'' +
+                ", blobID=" + blobID +
+                ", blob=" + blob +
+                ", status='" + status + '\'' +
+                ", ownerID=" + ownerID +
+                ", type='" + type + '\'' +
+                ", typeID=" + typeID +
+                ", rejectionReason='" + rejectionReason + '\'' +
+                '}';
+    }
 }

@@ -27,7 +27,10 @@ public class LoginPOJO {
     }
 
     @Override
-    public String toString(){
-        return "[email: " + this.getEmailInput() + ", password: " + this.getPassInput() + "]";
+    public String toString() {
+        return "LoginPOJO{" +
+                "emailInput='" + emailInput + '\'' +
+                ", passInput='" + passInput + '\'' +
+                '}';
     }
 }

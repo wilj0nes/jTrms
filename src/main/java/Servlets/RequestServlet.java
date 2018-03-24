@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@WebServlet(name = "FrontControllerServlet")
-public class FrontControllerServlet extends HttpServlet {
+//@WebServlet(name = "RequestServlet")
+public class RequestServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,17 +19,4 @@ public class FrontControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-
-//    public static String process(HttpServletRequest request, HttpServletResponse response){
-//
-//        switch (request.getRequestURI()){
-//            case "/trms.html": {
-//                return "/trms.html";
-//            }
-//            case "asdf": {
-//
-//            }
-//        }
-//        return null;
-//    }
 }

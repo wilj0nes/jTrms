@@ -1,0 +1,10 @@
+**/.vscode/**
+**/node_modules/**
+**/.package-lock.json
+.package-lock.json
+package-lock.json
+/target/**
+/bin/**
+database.properties
+**/database.properties
+/target/

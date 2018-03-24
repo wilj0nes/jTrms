@@ -14,22 +14,21 @@ function post(){
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        //console.log("ready state: " + xhr.readyState);
-        //console.log("status: " + xhr.status);
-
         if(xhr.readyState === 4 && xhr.status === 200){
-            //console.log("response text: " + xhr.responseText);
-            //getData();
-            if(xhr.responseText === "valid"){
-                window.location.replace('mdl.html');
+            if(xhr.responseText === "invalid"){
+                console.log("invalid login")
+                document.getElementById("email").value = "";
+                document.getElementById("password").value = "";
             }
             else{
-                window.location.replace('index.html');
+                console.log(xhr.responseText);
+                window.location.replace('trms.html');
+                setUserInfo(xhr.responseText);
             }
         }
     };
 
-    xhr.open("POST", "/s", true);
+    xhr.open("POST", "/login", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("LoginPOJO=" + JSON.stringify({emailInput:email, passInput:pass}));
 }
@@ -37,9 +36,15 @@ function post(){
 function getData(){
     email = document.getElementById("email").value;
     pass = document.getElementById("password").value;
-    //string = "[email: " + email + ", Password: " + email + "]";
-    //console.log(string);
     post();
+}
+
+function setUserInfo(responseText){
+
+    var u = JSON.parse(responseText);
+    console.log(u);
+    document.getElementById("header").value = "asdf";
+
 }
 
 
