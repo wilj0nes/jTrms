@@ -21,7 +21,8 @@ public class RequestDAO {
                            String status,
                            int ownerID,
                            int typeID,
-                           String rejectionReason){
+                           String rejectionReason,
+                           String description){
         String sql;
         PreparedStatement ps;
         Connection conn;
@@ -38,8 +39,9 @@ public class RequestDAO {
                 "                      STATUS, \n" +
                 "                      USER_ID, \n" +
                 "                      REQUEST_TYPE, \n" +
-                "                      REJECTION_REASON) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                "                      REJECTION_REASON,\n" +
+                "                      DESCRIPTION) \n" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         try{
             ps = conn.prepareStatement(sql);
             ps.setDate(1, null);
@@ -55,6 +57,7 @@ public class RequestDAO {
             ps.setInt(11, ownerID);
             ps.setInt(12, typeID);
             ps.setString(13, rejectionReason);
+            ps.setString(14, description);
             ResultSet resultSet = ps.executeQuery();
         }
         catch (SQLException e){
@@ -90,7 +93,8 @@ public class RequestDAO {
                         rs.getInt("USER_ID"),
                         this.getRequestType(rs.getInt("REQUEST_TYPE")),
                         rs.getInt("REQUEST_TYPE"),
-                        rs.getString("REJECTION_REASON")
+                        rs.getString("REJECTION_REASON"),
+                        rs.getString("DESCRIPTION")
                 );
                 requestArrayList.add(request);
             }
@@ -101,8 +105,7 @@ public class RequestDAO {
         catch (NullPointerException e){
             e.printStackTrace();
         }
-
-
+        //System.out.println(requestArrayList.size());
         return requestArrayList;
     }
 
@@ -128,12 +131,13 @@ public class RequestDAO {
                         this.getFormat(rs.getInt("GRADING_FORMAT")),
                         rs.getString("JUSTIFICATION"),
                         rs.getInt("BLOB_ID"),
-                        null,                                // TODO, deal with this later
+                        null,                // TODO, deal with this later
                         rs.getString("STATUS"),
                         rs.getInt("USER_ID"),
                         this.getRequestType(rs.getInt("REQUEST_TYPE")),
                         rs.getInt("REQUEST_TYPE"),
-                        rs.getString("REJECTION_REASON")
+                        rs.getString("REJECTION_REASON"),
+                        rs.getString("DESCRIPTION")
                 );
             }
         }
@@ -167,6 +171,25 @@ public class RequestDAO {
         return s;
     }
 
+    public int getRequestTypeID(String requestType){
+        PreparedStatement ps;
+        Connection conn = ConnectionFactory.getInstance().getConnection();
+        //language=Oracle
+        String sql = "SELECT REQUEST_ID FROM REQUEST_TYPE WHERE REQUEST = ? ";
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, requestType);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                return rs.getInt("REQUEST_ID");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
     public String getFormat(int typeId){
         String s = "";
         String sql;
@@ -186,6 +209,25 @@ public class RequestDAO {
             e.printStackTrace();
         }
         return s;
+    }
+
+    public int getFormatID(String s){
+        PreparedStatement ps;
+        Connection conn = ConnectionFactory.getInstance().getConnection();
+        //language=Oracle
+        String sql = "SELECT FORMAT_ID FROM GRADING_FORMAT WHERE FORMAT_TYPE = ? ";
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, s);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                return rs.getInt("FORMAT_ID");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     @SuppressWarnings("Duplicates")

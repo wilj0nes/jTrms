@@ -2,6 +2,8 @@ import DAOs.RequestDAO;
 import DataObjects.Request;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 
 public class TestRequestDAO {
     private RequestDAO requestDAO = new RequestDAO();
@@ -9,18 +11,19 @@ public class TestRequestDAO {
     @Test
     public void testNewRequest(){
         requestDAO = new RequestDAO();
-        requestDAO.newRequest("123 something",
+        requestDAO.newRequest("123 asd adsf",
                     "city",
                     "PA",
                     39392,
-                    2333334,
+                    2334,
                     2,
-                    "justice",
+                    "asdf justice",
                     0,
-                    "test status",
-                    83,
+                    "asdf status",
+                    104,
                     2,
-                    "test rejection");
+                    "asdfasdfs rejection",
+                    "some description");
     }
 
     @Test
@@ -29,6 +32,18 @@ public class TestRequestDAO {
         Request r;
         r = requestDAO.findRequestById(21);
         System.out.println("\n" + r.getId());
+    }
+
+    @Test
+    public void testGetUserRequests(){
+        requestDAO = new RequestDAO();
+        ArrayList<Request> requestList = requestDAO.getUserRequests(83);
+        System.out.println(requestList.size());
+
+        for(Request r : requestList){
+            System.out.println(r.toString());
+        }
+
     }
 
     @Test

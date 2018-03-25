@@ -16,12 +16,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>FormServlet</servlet-name>
-        <servlet-class>Servlets.FormServlet</servlet-class>
+        <servlet-name>TrmsServlet</servlet-name>
+        <servlet-class>Servlets.TrmsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>FormServlet</servlet-name>
-        <url-pattern>/form</url-pattern>
+        <servlet-name>TrmsServlet</servlet-name>
+        <url-pattern>/trms</url-pattern>
     </servlet-mapping>
 
     <servlet>

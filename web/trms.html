@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/material.min.css">
     <script src="js/material.min.js"></script>
+    <link rel="stylesheet" href="css/trms.css"/>
     <!--<script src="js/tuitionForm.js"></script>-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -19,18 +20,17 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title">Title</span>
+            <span id="header-title" class="mdl-layout-title">Title</span>
         </div>
         <!-- Tabs -->
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-            <a href="#scroll-tab-1" class="mdl-layout__tab is-active">New request </a>
-            <a href="#scroll-tab-2" class="mdl-layout__tab">All requests</a>
-            <a href="#scroll-tab-3" class="mdl-layout__tab">Something</a>
-            <a href="#scroll-tab-5" class="mdl-layout__tab">Tab 4</a>
-            <a href="#scroll-tab-6" class="mdl-layout__tab">Tab 5</a>
+            <a href="#scroll-tab-1" class="mdl-layout__tab is-active">New request</a>
+            <a id="all-requests" href="#scroll-tab-2" class="mdl-layout__tab">All requests</a>
+            <a href="#scroll-tab-3" class="mdl-layout__tab">My requests</a>
         </div>
     </header>
     <div class="mdl-layout__drawer">
+        <img class="profile-pic" src="img/profile-pic.png" alt="profile-pic">
         <span id="title" class="mdl-layout-title">Title</span>
     </div>
     <main class="mdl-layout__content">
@@ -39,44 +39,139 @@
                 <div class="centered-container">
                     <h4>Tuition Reimbursement form</h4>
                 </div>
-                <form class="new-request-form">
+
+                <form action="request" method="post" class="new-request-form">
+
+                    <!--<input style="display: none" id="user-id" name="user-id">-->
+
+                <!--<form class="new-request-form">-->
                     <div class="form-row">
                         <div class="col-md-10 mb-4">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder=" Email" value="">
-
+                            <input type="text"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   placeholder=" Email" value="" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-4">
                             <label for="firstname">First name</label>
-                            <input type="text" class="form-control" id="firstname" placeholder=" First name" value="">
+                            <input type="text"
+                                   class="form-control"
+                                   id="firstname"
+                                   name="firstname"
+                                   placeholder=" First name"
+                                   value="" required>
                         </div>
                         <div class="col-md-6 mb-4">
                             <label for="firstname">Last name</label>
-                            <input type="text" class="form-control" id="lastname" placeholder=" Last name">
+                            <input type="text"
+                                   class="form-control"
+                                   id="lastname"
+                                   name="lastname"
+                                   placeholder=" Last name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-10 mb-4">
+                            <label for="address">Address</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="address"
+                                   name="address"
+                                   placeholder=" Address"
+                                   value="" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-4 form-group">
                             <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" placeholder=" City">
+                            <input type="text"
+                                   class="form-control"
+                                   id="city"
+                                   name="city"
+                                   placeholder=" City" required>
                         </div>
                         <div class="col-md-3 mb-4 form-group">
                             <label for="state">State</label>
-                            <input type="text" class="form-control" id="state" placeholder=" State">
+                            <!--<input type="text" class="form-control" id="state" placeholder=" State">-->
+                            <select class="form-control" name="state" id="state">
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+
+                            </select>
                         </div>
                         <div class="col-md-3 mb-4 form-group">
                             <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" placeholder=" Zip">
+                            <input type="number"
+                                   class="form-control"
+                                   id="zip"
+                                   name="zip"
+                                   placeholder=" Zip" required>
                         </div>
                         <div class="col-md-10 mb-4 form-group">
                             <label id="desc">Description</label>
-                            <textarea id="description" class="form-control" name="location"></textarea>
+                            <textarea id="description"
+                                      class="form-control"
+                                      name="description" required></textarea>
                         </div>
                         <div title="The date and time of the event" class="col-md-6 mb-4 form-group">
                             <label id="username">Date and Time</label>
-                            <input class=" form-control" type="datetime-local" id="date-time" name="username"/>
+                            <input class=" form-control"
+                                   type="datetime-local"
+                                   id="date-time"
+                                   name="date-time" required/>
                         </div>
                         <div class="col-md-6 mb-4 form-group">
                             <label for="cost">Cost</label>
@@ -87,14 +182,15 @@
                                 <input type="number"
                                        class="form-control"
                                        id="cost"
+                                       name="cost"
                                        min="0"
                                        placeholder=" Cost"
-                                       aria-describedby="inputGroupPrepend2">
+                                       aria-describedby="inputGroupPrepend2" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4 form-group">
                             <label for="grading-format">Grading format</label>
-                            <select class="form-control" id="grading-format">
+                            <select class="form-control" name="grading-format" id="grading-format" required>
                                 <option>Letter grade</option>
                                 <option>Pass/Fail</option>
                                 <option>Percentage</option>
@@ -103,7 +199,7 @@
                         </div>
                         <div class="col-md-6 mb-4 form-group">
                             <label for="event-type">Type of event</label>
-                            <select class="form-control" id="event-type">
+                            <select class="form-control" name="event-type" id="event-type" required>
                                 <option>University courses</option>
                                 <option>Seminars</option>
                                 <option>Certification preparation class</option>
@@ -113,6 +209,14 @@
                             </select>
                         </div>
                         <div class="col-md-10 mb-4 form-group">
+                            <label id="justification-type">Justification</label>
+                            <textarea id="justification"
+                                      class="form-control"
+                                      name="justification" required></textarea>
+                        </div>
+
+                        <!--TODO change this-->
+                        <div style="display: none" class="col-md-10 mb-4 form-group">
                             <label for="files">Choose file</label>
                             <div class="input-group mb-3">
                                 <div class="custom-file">
@@ -122,9 +226,10 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" id="submit" type="button">Submit</button>
-                    <!--<button class="btn btn-primary" id="submit" type="submit">Submit</button>-->
-
+                    <input class="btn btn-primary"
+                            id="submit"
+                           name="submit"
+                            type="submit"/>
                 </form>
                 <!--TODO make "other" modals-->
 
@@ -132,36 +237,46 @@
         </section>
         <section class="mdl-layout__tab-panel" id="scroll-tab-2">               <!--All requests-->
             <div class="page-content">
-                <table class="all-requests mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                <!--<table class="all-requests mdl-data-table mdl-js-data-table mdl-data-table&#45;&#45;selectable mdl-shadow&#45;&#45;2dp">-->
+                <table class="all-requests mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead>
                     <tr>
-                        <th class="mdl-data-table__cell--non-numeric">Material</th>
-                        <th>Quantity</th>
-                        <th>Unit price</th>
+                        <th class="mdl-data-table__cell--non-numeric">ID</th>
+                        <th>Date created</th>
+                        <th>Cost</th>
+                        <th>Grading format</th>
+                        <th>Justification</th>
+                        <th>Status</th>
+                        <th>Type</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+                        <td class="mdl-data-table__cell--non-numeric">4</td>
                         <td>25</td>
+                        <td>$2.90</td>
+                        <td>$2.90</td>
+                        <td>$2.90</td>
+                        <td>$2.90</td>
                         <td>$2.90</td>
                     </tr>
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
+                        <td class="mdl-data-table__cell--non-numeric">4</td>
                         <td>50</td>
                         <td>$1.25</td>
-                    </tr>
-                    <tr>
-                        <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-                        <td>10</td>
-                        <td>$2.35</td>
+                        <td>$1.25</td>
+                        <td>$1.25</td>
+                        <td>$1.25</td>
+                        <td>$1.25</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </section>
-        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
-            <div class="page-content">3</div>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-3">           <!--personal requests-->
+            <div class="page-content">
+
+            </div>
         </section>
         <section class="mdl-layout__tab-panel" id="scroll-tab-4">
             <div class="page-content">4</div>
@@ -174,5 +289,6 @@
         </section>
     </main>
 </div>
+    <script src="js/trms.js"></script>
 </body>
 </html>

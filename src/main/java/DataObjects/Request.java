@@ -26,6 +26,7 @@ public class Request {
     private String type;
     private int typeID;
     private String rejectionReason;
+    private String description;
 
     public Request(int id,
                    String address,
@@ -41,7 +42,8 @@ public class Request {
                    int ownerID,
                    String type,
                    int typeID,
-                   String rejectionReason){
+                   String rejectionReason,
+                   String description){
         this.setId(id);
         this.setAddress(address);
         this.setCity(city);
@@ -57,6 +59,7 @@ public class Request {
         this.setType(type);
         this.setTypeID(typeID);
         this.setRejectionReason(rejectionReason);
+        this.setDescription(description);
     }
 
     public Request(){};
@@ -190,6 +193,14 @@ public class Request {
         this.rejectionReason = rejectionReason;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Request{" +
@@ -209,6 +220,7 @@ public class Request {
                 ", type='" + type + '\'' +
                 ", typeID=" + typeID +
                 ", rejectionReason='" + rejectionReason + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

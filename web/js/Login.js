@@ -14,16 +14,18 @@ function post(){
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
+        //console.log(xhr.readyState);
+        //console.log(xhr.status);
         if(xhr.readyState === 4 && xhr.status === 200){
             if(xhr.responseText === "invalid"){
-                console.log("invalid login")
+                console.log("invalid login");
                 document.getElementById("email").value = "";
                 document.getElementById("password").value = "";
             }
             else{
+                console.log("valid login");
                 console.log(xhr.responseText);
                 window.location.replace('trms.html');
-                setUserInfo(xhr.responseText);
             }
         }
     };
@@ -39,13 +41,6 @@ function getData(){
     post();
 }
 
-function setUserInfo(responseText){
-
-    var u = JSON.parse(responseText);
-    console.log(u);
-    document.getElementById("header").value = "asdf";
-
-}
 
 
 window.onload = function () {
