@@ -1,5 +1,6 @@
 window.onload = function () {
     document.getElementById("submit").addEventListener("click", submitData);
+    document.getElementById("logout").addEventListener("click", logout);
     getUser();
 };
 
@@ -81,7 +82,6 @@ function submitData() {
     //     eventType: eventType,
     //     justification: justification
     // };
-
     // var xhr = new XMLHttpRequest();
     // xhr.onreadystatechange = function () {
     //     if(xhr.readyState === 4 && xhr.status === 200){
@@ -92,16 +92,19 @@ function submitData() {
     // xhr.open("POST", "/request", true);
     // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     // xhr.send("request=" + JSON.stringify(newRequest));
-
 }
 
 
 
-
-
-
-
-
-
-
-
+function logout(){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4 && xhr.status === 200){
+            console.log("Logging out");
+            user = undefined;
+            window.location.replace("index.html");
+        }
+    }
+    xhr.open("GET", "/logout", true);
+    xhr.send();
+}

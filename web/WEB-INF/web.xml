@@ -28,6 +28,14 @@
         <servlet-name>RequestServlet</servlet-name>
         <servlet-class>Servlets.RequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>Servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestServlet</servlet-name>
         <url-pattern>/request</url-pattern>
