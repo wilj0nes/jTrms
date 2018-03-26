@@ -3,8 +3,9 @@
     margin-bottom: 20px;
 }
 
-.all-requests{
+.requests{
     margin:1em auto;
+    /*overflow-x: scroll;*/
 }
 
 .new-request-form{
@@ -86,9 +87,15 @@ input.currency {
 .custom-file-input{
     cursor: pointer;
 }
-
-
 .contain{
     display: none;
 }
 
+.table-content{
+    /*overflow-x: scroll;*/
+    /*overflow-y: scroll;*/
+}
+
+.tab-stuff{
+    overflow: auto;
+}

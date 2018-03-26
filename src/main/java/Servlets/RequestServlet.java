@@ -12,20 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 //@WebServlet(name = "RequestServlet")
 public class RequestServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("RequestServlet doPost()");
-
+        //System.out.println("RequestServlet doPost()");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        System.out.println("zip --> " + request.getParameter("zip"));
 
         RequestDAO rDao = new RequestDAO();
+        System.out.println(rDao.getRequestTypeID(request.getParameter("event-type")));
+
         rDao.newRequest(
                 request.getParameter("address"),
                 request.getParameter("city"),
@@ -46,6 +47,12 @@ public class RequestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doGet() all the requests");
+        HttpSession session = request.getSession();
+        ObjectMapper om = new ObjectMapper();
 
+        ArrayList<Request> requestList = (ArrayList<Request>) session.getAttribute("requestList");
+        String requestString = om.writeValueAsString(requestList);
+        response.getWriter().write(requestString);
     }
 }

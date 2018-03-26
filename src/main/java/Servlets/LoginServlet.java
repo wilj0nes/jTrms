@@ -46,6 +46,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", u);
 
             ArrayList<Request> requestList = rDao.getUserRequests(u.getId());
+            ArrayList<Request> requestListAll = rDao.getAllRequests();
+            session.setAttribute("requestListAll", requestListAll);
 
             if(requestList.size() != 0){
                 session.setAttribute("requestList", requestList);
@@ -53,7 +55,6 @@ public class LoginServlet extends HttpServlet {
             else {
                 System.out.println("no requests for this user");
             }
-
 
             String userString = om.writeValueAsString(u);
             response.getWriter().write(userString);

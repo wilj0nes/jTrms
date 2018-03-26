@@ -16,7 +16,7 @@
 </head>
 <body>
 <!-- Simple header with scrollable tabs. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="trms-body mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title -->
@@ -39,7 +39,7 @@
         </div>
     </div>
     <main class="mdl-layout__content">
-        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">     <!--New request-->
+        <section class="table-content mdl-layout__tab-panel is-active" id="scroll-tab-1">     <!--New request-->
             <div class="page-content">
                 <div class="centered-container">
                     <h4>Tuition Reimbursement form</h4>
@@ -231,7 +231,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="btn btn-primary"
+                    <input class="mdl-button mdl-js-button mdl-button--raised"
                             id="submit"
                            name="submit"
                             type="submit"/>
@@ -240,47 +240,60 @@
 
             </div>
         </section>
-        <section class="mdl-layout__tab-panel" id="scroll-tab-2">               <!--All requests-->
+        <section class="tab-stuff mdl-layout__tab-panel" id="scroll-tab-2">               <!--All requests-->
             <div class="page-content">
                 <!--<table class="all-requests mdl-data-table mdl-js-data-table mdl-data-table&#45;&#45;selectable mdl-shadow&#45;&#45;2dp">-->
-                <table class="all-requests mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                <table id="all-requests-table" class="requests mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead>
-                    <tr>
-                        <th class="mdl-data-table__cell--non-numeric">ID</th>
-                        <th>Date created</th>
-                        <th>Cost</th>
-                        <th>Grading format</th>
-                        <th>Justification</th>
-                        <th>Status</th>
-                        <th>Type</th>
-                    </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date created</th>
+                            <th>Cost</th>
+                            <th>Description</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip</th>
+                            <th>Grading format</th>
+                            <th>Justification</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td class="mdl-data-table__cell--non-numeric">4</td>
-                        <td>25</td>
-                        <td>$2.90</td>
-                        <td>$2.90</td>
-                        <td>$2.90</td>
-                        <td>$2.90</td>
-                        <td>$2.90</td>
-                    </tr>
-                    <tr>
-                        <td class="mdl-data-table__cell--non-numeric">4</td>
-                        <td>50</td>
-                        <td>$1.25</td>
-                        <td>$1.25</td>
-                        <td>$1.25</td>
-                        <td>$1.25</td>
-                        <td>$1.25</td>
-                    </tr>
+                    <tbody id="table-body-all">
+                        <!--<tr>-->
+                            <!--<td></td>-->
+                        <!--</tr>-->
                     </tbody>
                 </table>
             </div>
         </section>
-        <section class="mdl-layout__tab-panel" id="scroll-tab-3">           <!--personal requests-->
+        <section class="tab-stuff mdl-layout__tab-panel" id="scroll-tab-3">           <!--personal requests-->
             <div class="page-content">
-
+                <table id="personal-requests-table" class="requests mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date created</th>
+                            <th>Cost</th>
+                            <th>Description</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip</th>
+                            <th>Grading format</th>
+                            <th>Justification</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-personal">
+                        <!--<tr>-->
+                            <!--<td>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    </tbody>
+                </table>
             </div>
         </section>
         <section class="mdl-layout__tab-panel" id="scroll-tab-4">

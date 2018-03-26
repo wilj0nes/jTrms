@@ -1,6 +1,9 @@
+.trms-body{
+    /*overflow-y: scroll;*/
+}
+
 .profile-pic{
     width: 80%;
-    /*margin: 1em;*/
     margin-left: 23px;
     margin-top: 23px;
 }
@@ -8,5 +11,4 @@
 .logout-button{
     padding: auto;
     margin: 1em;
-    /*margin-left: 24px;*/
 }

@@ -65,6 +65,50 @@ public class RequestDAO {
         }
     }
 
+
+    @SuppressWarnings("Duplicates")
+    public ArrayList<Request> getAllRequests(){
+        ArrayList<Request> requestList = new ArrayList<Request>();
+        String sql;
+        PreparedStatement ps;
+        Connection conn = ConnectionFactory.getInstance().getConnection();
+        //language=Oracle
+        sql = "SELECT * FROM REQUESTS ORDER BY REQUEST_ID ";
+        try{
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Request request = new Request(rs.getInt("REQUEST_ID"),
+                        rs.getString("ADDRESS"),
+                        rs.getString("CITY"),
+                        rs.getString("STATE"),
+                        rs.getInt("ZIP"),
+                        rs.getFloat("COST"),
+                        this.getFormat(rs.getInt("GRADING_FORMAT")),
+                        rs.getString("JUSTIFICATION"),
+                        rs.getInt("BLOB_ID"),
+                        null,                                // TODO, deal with this later
+                        rs.getString("STATUS"),
+                        rs.getInt("USER_ID"),
+                        this.getRequestType(rs.getInt("REQUEST_TYPE")),
+                        rs.getInt("REQUEST_TYPE"),
+                        rs.getString("REJECTION_REASON"),
+                        rs.getString("DESCRIPTION")
+                );
+                requestList.add(request);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+        return requestList;
+    }
+
+    @SuppressWarnings("Duplicates")
     public ArrayList<Request> getUserRequests(int userId){
         ArrayList<Request> requestArrayList = new ArrayList<Request>();
         String sql;
@@ -72,7 +116,7 @@ public class RequestDAO {
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
         //language=GenericSQL
-        sql = "SELECT * FROM REQUESTS WHERE REQUESTS.USER_ID = ? ";
+        sql = "SELECT * FROM REQUESTS WHERE REQUESTS.USER_ID = ? ORDER BY REQUEST_ID ";
 
         try{
             ps = conn.prepareStatement(sql);

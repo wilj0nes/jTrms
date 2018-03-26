@@ -30,7 +30,7 @@ public class TrmsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet() the requests");
+        System.out.println("doGet() the personal requests");
         HttpSession session = request.getSession();
         ObjectMapper om = new ObjectMapper();
 
