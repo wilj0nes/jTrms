@@ -6,6 +6,7 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Servlets.LoginServlet</servlet-class>
@@ -28,6 +29,11 @@
         <servlet-name>RequestServlet</servlet-name>
         <servlet-class>Servlets.RequestServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestServlet</servlet-name>
+        <url-pattern>/request</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>Servlets.LogoutServlet</servlet-class>
@@ -36,10 +42,7 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestServlet</servlet-name>
-        <url-pattern>/request</url-pattern>
-    </servlet-mapping>
+
     <servlet>
         <servlet-name>RequestAllServlet</servlet-name>
         <servlet-class>Servlets.RequestAllServlet</servlet-class>

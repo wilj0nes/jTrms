@@ -1,10 +1,11 @@
+var user, requests = null;
+
 window.onload = function () {
     document.getElementById("submit").addEventListener("click", submitData);
     document.getElementById("logout").addEventListener("click", logout);
     getUser();
 };
 
-var user, requests, allRequests;
 
 function getUser(){
     console.log("getUser()");
@@ -16,17 +17,16 @@ function getUser(){
             setData();
         }
     };
-
     xhr.open("POST", "/trms", true);
     xhr.send();
 }
 
 
 function setData() {
-    document.getElementById("title").innerText = user.firstName;
-    document.getElementById("header-title").innerText = user.firstName + " " + user.lastName;
+    document.getElementById("title").innerText = user.firstName + " " + user.lastName;
+    document.getElementById("header-title").innerText = "Hello, " + user.firstName;
 
-    // Auto fill user details
+    // Auto-fill user details
     document.getElementById("email").value = user.email;
     document.getElementById("firstname").value = user.firstName;
     document.getElementById("lastname").value = user.lastName;
@@ -35,8 +35,14 @@ function setData() {
     xhr.onreadystatechange = function () {
         if(xhr.readyState === 4 && xhr.status === 200){
             requests = JSON.parse(xhr.responseText);
-            console.log(requests);
-            populateTables("table-body-personal", requests); // this populates personal requests
+            if(requests !== null){
+                console.log(requests);
+                populateTables("table-body-personal", requests, false); // this populates personal requests
+                populateTables("table-body-all", requests, true);
+            }
+            else{
+                console.log("can't find requests for this user");
+            }
         }
     };
     xhr.open("GET", "/trms", true);
@@ -46,80 +52,106 @@ function setData() {
         document.getElementById("scroll-tab-2").style.display = "none";
         document.getElementById("all-requests").style.display = "none";
     }
-    else{
-        getAllRequests();
-    }
 }
 
-// TODO make new Servlet for returning ALL requests
-function getAllRequests(){
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if(xhr.readyState === 4 && xhr.status === 200){
-            allRequests = JSON.parse(xhr.responseText);
-            console.log(allRequests);
-            populateTables("table-body-all", allRequests); // this populates personal requests
+// function getAllRequests(){
+//     console.log("getAllRequests()");
+//     var xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function () {
+//         if(xhr.readyState === 4 && xhr.status === 200){
+//             allRequests = JSON.parse(xhr.responseText);
+//             if(allRequests !== null){
+//                 console.log(allRequests);
+//                 populateTables("table-body-all", allRequests); // this populates personal requests
+//             }
+//             else{
+//                 console.log("can't find allRequests");
+//             }
+//         }
+//     };
+//     xhr.open("POST", "/requestAll", true);
+//     xhr.send();
+// }
+
+function populateTables(tableId, requests, personalize){
+
+    //console.log("--> " + tableId);
+
+    for(var i = 0; i < requests.length; i++){
+
+
+        if(personalize || requests[i].ownerID === user.id){
+
+            var tableBody = document.getElementById(tableId);
+            var row = tableBody.insertRow(-1);
+
+                // Request ID
+                var id = row.insertCell(-1);
+                id.innerHTML = requests[i].id;
+
+
+                // Date created
+                var date = row.insertCell(-1);
+                date.innerHTML = undefined;
+
+                // Cost
+                var cost = row.insertCell(-1);
+                cost.innerHTML = String(requests[i].cost);
+
+                // description
+                var description = row.insertCell(-1);
+                description.innerHTML = requests[i].description;
+
+                // address
+                var address = row.insertCell(-1);
+                address.innerHTML = String(requests[i].address);
+
+                // city
+                var city = row.insertCell(-1);
+                city.innerHTML = requests[i].city;
+
+                // state
+                var state = row.insertCell(-1);
+                state.innerHTML = requests[i].state;
+
+                // zip
+                var zip = row.insertCell(-1);
+                zip.innerHTML = String(requests[i].zip);
+
+                // grading format
+                var gradingFormat = row.insertCell(-1);
+                gradingFormat.innerHTML = String(requests[i].format);
+
+                // justification
+                var justification = row.insertCell(-1);
+                justification.innerHTML = String(requests[i].justification);
+
+                // status
+                var status = row.insertCell(-1);
+                status.innerHTML = requests[i].status;
+                if(status.innerHTML === "pending"){
+                    status.style.backgroundColor = "yellow";
+                }
+                else if (status.innerHTML === "rejected"){
+                    status.style.backgroundColor = "red";
+                }
+                else if(status.innerHTML === "approved"){
+                    status.style.backgroundColor = "green";
+                }
+
+                // request type
+                var type = row.insertCell(-1);
+                type.innerHTML = requests[i].type;
+
+            row.className = requests[i].id;
+            row = document.addEventListener("click", editRequest(row.className), true);
         }
-    };
-    xhr.open("GET", "/requestAll", true);
-    xhr.send();
+
+    }
 }
 
-function populateTables(tableId, list){
-
-    for(var i = 0; i < list.length; i++){
-
-        var tableBody = document.getElementById(tableId);
-        var row = tableBody.insertRow(-1);
-
-            // Request ID
-            var id = row.insertCell(-1);
-            id.innerHTML = list[i].id;
-
-            // Date created
-            var date = row.insertCell(-1);
-            date.innerHTML = undefined;
-
-            // Cost
-            var cost = row.insertCell(-1);
-            cost.innerHTML = String(list[i].cost);
-
-            // description
-            var description = row.insertCell(-1);
-            description.innerHTML = list[i].description;
-
-            // address
-            var address = row.insertCell(-1);
-            address.innerHTML = String(list[i].address);
-
-            // city
-            var city = row.insertCell(-1);
-            city.innerHTML = list[i].city;
-
-            // state
-            var state = row.insertCell(-1);
-            state.innerHTML = list[i].state;
-
-            // zip
-            var zip = row.insertCell(-1);
-            zip.innerHTML = String(list[i].zip);
-
-            // grading format
-            var gradingFormat = row.insertCell(-1);
-            gradingFormat.innerHTML = String(list[i].format);
-
-            // justification
-            var justification = row.insertCell(-1);
-            justification.innerHTML = String(list[i].justification);
-
-            // status
-            var status = row.insertCell(-1);
-            status.innerHTML = list[i].status;
-
-            // request type
-            var type = row.insertCell(-1);
-            type.innerHTML = list[i].type;
-    }
+function editRequest(id){
+    console.log("Edit request --> " + id);
 }
 
 
@@ -133,18 +165,19 @@ function submitData() {
     allRequests = null;
 
     setData();
-    getAllRequests();
-
-    //populateTables("table-body-all"); // this populates personal requests
-    //populateTables("table-body-personal");
+    if(user.type !== 2){
+        //getAllRequests();
+    }
 }
 
 function logout(){
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if(xhr.readyState === 4 && xhr.status === 200){
-            console.log("Logging out");
-            user = undefined;
+            console.log("Logging out...");
+            // user = null;
+            // requests = null;
+            // allRequests = null;
             window.location.replace("index.html");
         }
     }

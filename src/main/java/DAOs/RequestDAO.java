@@ -123,6 +123,9 @@ public class RequestDAO {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
+
+                //System.out.println("--> " + this.getRequestType(rs.getInt("REQUEST_TYPE")));
+
                 Request request = new Request(rs.getInt("REQUEST_ID"),
                         rs.getString("ADDRESS"),
                         rs.getString("CITY"),
@@ -140,6 +143,7 @@ public class RequestDAO {
                         rs.getString("REJECTION_REASON"),
                         rs.getString("DESCRIPTION")
                 );
+                //System.out.println("--> " + this.getRequestType(rs.getInt("REQUEST_TYPE")));
                 requestArrayList.add(request);
             }
         }
@@ -195,12 +199,10 @@ public class RequestDAO {
     }
 
     public String getRequestType(int typeId){
-        String s = "";
-        String sql;
+        String s = "Request type not found";
         PreparedStatement ps;
-        Connection conn;
-        conn = ConnectionFactory.getInstance().getConnection();
-        sql = "SELECT REQUEST FROM REQUEST_TYPE WHERE REQUEST_ID = ? ";
+        Connection conn = ConnectionFactory.getInstance().getConnection();
+        String sql = "SELECT REQUEST FROM REQUEST_TYPE WHERE REQUEST_ID = ? ";
         try{
             ps = conn.prepareStatement(sql);
             ps.setInt(1, typeId);
@@ -231,7 +233,7 @@ public class RequestDAO {
         catch (SQLException e){
             e.printStackTrace();
         }
-        return -1;
+        return 5;// TODO should probably not do this
     }
 
     public String getFormat(int typeId){

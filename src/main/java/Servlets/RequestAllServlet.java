@@ -1,5 +1,6 @@
 package Servlets;
 
+import DAOs.RequestDAO;
 import DataObjects.Request;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -16,15 +17,24 @@ import java.util.ArrayList;
 public class RequestAllServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ObjectMapper om = new ObjectMapper();
+        RequestDAO rDao = new RequestDAO();
+        //HttpSession session = request.getSession();
+
+
+        ArrayList<Request> allRequests = rDao.getAllRequests();
+        String allRequestsString = om.writeValueAsString(allRequests);
+
+        //session.setAttribute("allRequests", allRequests);
+
+        response.getWriter().write(allRequestsString);
+        String requestString = om.writeValueAsString(allRequests);
+        response.getWriter().write(requestString);
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        ObjectMapper om = new ObjectMapper();
 
-        ArrayList<Request> allRequests = (ArrayList<Request>) session.getAttribute("requestListAll");
-        String allRequestsString = om.writeValueAsString(allRequests);
-        response.getWriter().write(allRequestsString);
     }
 }

@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //System.out.println("doPost()");
+        HttpSession session = request.getSession();
 
         UserDAO uDao = new UserDAO();
         RequestDAO rDao = new RequestDAO();
@@ -31,7 +32,8 @@ public class LoginServlet extends HttpServlet {
         ObjectMapper om = new ObjectMapper();
         LoginPOJO in = om.readValue(request.getParameter("LoginPOJO"), LoginPOJO.class);
 
-        User u = uDao.findUserByEmailAndPassword(in.getEmailInput(), in.getPassInput());
+        User u = new User();
+        u = uDao.findUserByEmailAndPassword(in.getEmailInput(), in.getPassInput());
 
         PrintWriter out = response.getWriter();
         if(u == null){
@@ -42,18 +44,18 @@ public class LoginServlet extends HttpServlet {
 
             // put the user's requests in session
 
-            HttpSession session = request.getSession();
             session.setAttribute("user", u);
 
-            ArrayList<Request> requestList = rDao.getUserRequests(u.getId());
+            //ArrayList<Request> requestList = rDao.getUserRequests(u.getId());
+
             ArrayList<Request> requestListAll = rDao.getAllRequests();
             session.setAttribute("requestListAll", requestListAll);
 
-            if(requestList.size() != 0){
-                session.setAttribute("requestList", requestList);
+            if(requestListAll.size() != 0){
+                session.setAttribute("requestList", requestListAll);
             }
             else {
-                System.out.println("no requests for this user");
+                System.out.println("no requests found");
             }
 
             String userString = om.writeValueAsString(u);

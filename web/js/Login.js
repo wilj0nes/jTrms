@@ -19,6 +19,8 @@ function post(){
         if(xhr.readyState === 4 && xhr.status === 200){
             if(xhr.responseText === "invalid"){
                 console.log("invalid login");
+                alert("Incorrect username or password");
+                // location.reload();
                 document.getElementById("email").value = "";
                 document.getElementById("password").value = "";
             }
