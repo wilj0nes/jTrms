@@ -40,4 +40,12 @@
         <servlet-name>RequestServlet</servlet-name>
         <url-pattern>/request</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>RequestAllServlet</servlet-name>
+        <servlet-class>Servlets.RequestAllServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestAllServlet</servlet-name>
+        <url-pattern>/requestAll</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -47,7 +47,7 @@ public class RequestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet() all the requests");
+//        System.out.println("doGet() all the requests");
         HttpSession session = request.getSession();
         ObjectMapper om = new ObjectMapper();
 

@@ -61,7 +61,7 @@ function getAllRequests(){
             populateTables("table-body-all", allRequests); // this populates personal requests
         }
     };
-    xhr.open("GET", "/request", true);
+    xhr.open("GET", "/requestAll", true);
     xhr.send();
 }
 
