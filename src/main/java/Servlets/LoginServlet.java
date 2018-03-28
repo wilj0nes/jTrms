@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         ObjectMapper om = new ObjectMapper();
         LoginPOJO in = om.readValue(request.getParameter("LoginPOJO"), LoginPOJO.class);
 
-        User u = new User();
+        User u;
         u = uDao.findUserByEmailAndPassword(in.getEmailInput(), in.getPassInput());
 
         PrintWriter out = response.getWriter();
@@ -41,18 +41,11 @@ public class LoginServlet extends HttpServlet {
         }
         else{
             System.out.println("valid");
-
-            // put the user's requests in session
-
             session.setAttribute("user", u);
+            ArrayList<Request> requestList = rDao.getAllRequests();
 
-            //ArrayList<Request> requestList = rDao.getUserRequests(u.getId());
-
-            ArrayList<Request> requestListAll = rDao.getAllRequests();
-            session.setAttribute("requestListAll", requestListAll);
-
-            if(requestListAll.size() != 0){
-                session.setAttribute("requestList", requestListAll);
+            if(requestList.size() != 0){
+                session.setAttribute("requestList", requestList);
             }
             else {
                 System.out.println("no requests found");

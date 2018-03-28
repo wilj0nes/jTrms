@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//@WebServlet(name = "TrmsServlet")
+//@WebServlet(name = "Trms")
 public class TrmsServlet extends HttpServlet {
 
     @Override

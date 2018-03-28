@@ -1,4 +1,4 @@
-var user, requests = null;
+var user, requests;
 
 window.onload = function () {
     document.getElementById("submit").addEventListener("click", submitData);
@@ -162,7 +162,6 @@ function submitData() {
     document.getElementById("table-body-all").innerHTML = "";
     document.getElementById("table-body-personal").innerHTML = "";
     requests = null;
-    allRequests = null;
 
     setData();
     if(user.type !== 2){

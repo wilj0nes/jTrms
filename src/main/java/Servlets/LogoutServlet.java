@@ -22,7 +22,7 @@ public class LogoutServlet extends HttpServlet {
             //session.removeAttribute("user");
 //            session.removeAttribute("requestList");
 //            session.removeAttribute("requestListAll");
-            session.invalidate();
+            //session.invalidate();
             System.out.println("Logged out");
         }
         ServletContext context = getServletContext();

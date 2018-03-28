@@ -10,6 +10,8 @@ public class RequestDAO {
     //TODO do something about the date the request was made
     //TODO maybe do something about Blobs
 
+
+
     public void newRequest(String address,
                            String city,
                            String state,
@@ -84,7 +86,7 @@ public class RequestDAO {
                         rs.getString("STATE"),
                         rs.getInt("ZIP"),
                         rs.getFloat("COST"),
-                        this.getFormat(rs.getInt("GRADING_FORMAT")),
+                        "asdf", //this.getFormat(rs.getInt("GRADING_FORMAT")), // TODO deal with this
                         rs.getString("JUSTIFICATION"),
                         rs.getInt("BLOB_ID"),
                         null,                                // TODO, deal with this later
