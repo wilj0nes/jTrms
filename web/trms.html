@@ -1,6 +1,10 @@
 <!doctype html>
 <html>
 <head>
+    <!--<script-->
+            <!--type="text/javascript"-->
+            <!--src="https://code.jquery.com/jquery-3.3.1.min.js">-->
+    <!--</script>-->
     <!-- Material Design Lite -->
     <script href="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -13,6 +17,8 @@
     <link rel="stylesheet" href="css/trms.css"/>
     <!--<script src="js/tuitionForm.js"></script>-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
 <!-- Simple header with scrollable tabs. -->
@@ -27,7 +33,8 @@
             <a href="#scroll-tab-1" id="new-request" class="mdl-layout__tab is-active">New request</a>
             <a href="#scroll-tab-2" id="all-requests" class="mdl-layout__tab">All requests</a>
             <a href="#scroll-tab-3" class="mdl-layout__tab">My requests</a>
-            <a href="#scroll-tab-4" class="mdl-layout__tab">User info</a>
+            <!--<a href="#scroll-tab-4" class="mdl-layout__tab">User info</a>-->
+            <a href="#scroll-tab-4" id="edit-request" class="mdl-layout__tab">Edit request</a>
         </div>
     </header>
     <div class="mdl-layout__drawer">
@@ -47,9 +54,6 @@
                 </div>
 
                 <form action="request" method="post" class="new-request-form">
-
-                    <!--<input style="display: none" id="user-id" name="user-id">-->
-
                 <!--<form class="new-request-form">-->
                     <div class="form-row">
                         <div class="col-md-10 mb-4">
@@ -238,12 +242,10 @@
                             type="submit"/>
                 </form>
                 <!--TODO make "other" modals-->
-
             </div>
         </section>
         <section class="tab-stuff mdl-layout__tab-panel" id="scroll-tab-2">               <!--All requests-->
             <div class="page-content">
-                <!--<table class="all-requests mdl-data-table mdl-js-data-table mdl-data-table&#45;&#45;selectable mdl-shadow&#45;&#45;2dp">-->
                 <table id="all-requests-table" class="requests mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead>
                         <tr>
@@ -289,29 +291,135 @@
                         </tr>
                     </thead>
                     <tbody id="table-body-personal">
-                        <!--<tr>-->
-                            <!--<td>-->
-                            <!--</td>-->
-                        <!--</tr>-->
                     </tbody>
                 </table>
             </div>
         </section>
-        <section class="mdl-layout__tab-panel" id="scroll-tab-4">
+        <!--<section class="mdl-layout__tab-panel" id="scroll-tab-4">-->
+            <!--<div class="page-content">-->
+                <!--user info-->
+            <!--</div>-->
+        <!--</section>-->
+        <!-------------------------------------------------------------------------------------------------------------->
+
+        <section class="table-content mdl-layout__tab-panel" id="scroll-tab-4">   <!-- Edit request -->
             <div class="page-content">
+                <div class="centered-container">
+                    <h6 id="request-id">Request ID #</h6>
+                </div>
 
-
+                <!--<form action="update-request" method="post" class="new-request-form">-->
+                <form class="new-request-form">
+                    <!--<form class="new-request-form">-->
+                    <div class="form-row">
+                        <div class="col-md-10 mb-4">
+                            <label for="email">User email</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="request-email"
+                                   name="email"
+                                   placeholder=" Email" value="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-10 mb-4">
+                            <label for="address">Address</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="request-address"
+                                   name="address"
+                                   placeholder=" Address"
+                                   value="" readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-4 form-group">
+                            <label for="city">City</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="request-city"
+                                   name="request-city"
+                                   placeholder=" City" readonly>
+                        </div>
+                        <div class="col-md-6 mb-4 form-group">
+                            <label for="city">State</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="request-state"
+                                   name="state"
+                                   placeholder=" State" readonly>
+                        </div>
+                        <div class="col-md-3 mb-4 form-group">
+                            <label for="zip">Zip</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="request-zip"
+                                   name="zip"
+                                   placeholder=" Zip" readonly>
+                        </div>
+                        <div class="col-md-10 mb-4 form-group">
+                            <label>Description</label>
+                            <textarea id="request-description"
+                                      class="form-control"
+                                      name="description" readonly></textarea>
+                        </div>
+                        <div title="The date and time of the event" class="col-md-6 mb-4 form-group">
+                            <label>Date and Time</label>
+                            <input class=" form-control"
+                                   type="datetime-local"
+                                   id="request-date-and-time"
+                                   name="date-time" readonly/>
+                        </div>
+                        <div class="col-md-6 mb-4 form-group">
+                            <label for="cost">Cost</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="$$">$</span>
+                                </div>
+                                <input type="number"
+                                       class="form-control"
+                                       id="request-cost"
+                                       name="cost"
+                                       min="0"
+                                       placeholder=" Cost"
+                                       aria-describedby="inputGroupPrepend2" readonly>
+                            </div>
+                        </div>
+                        <div id="request-status" class="col-md-6 mb-4 form-group">
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="approve">
+                                <input type="radio" id="approve" class="mdl-radio__button" name="options" value="1">
+                                <span class="mdl-radio__label">Approve</span>
+                            </label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="reject">
+                                <input type="radio" id="reject" class="mdl-radio__button" name="options" value="2">
+                                <span class="mdl-radio__label">Reject</span>
+                            </label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pending">
+                                <input type="radio" id="pending" class="mdl-radio__button" name="options" value="3" checked>
+                                <span class="mdl-radio__label">Pending</span>
+                            </label>
+                        </div>
+                        <div class="col-md-10 mb-4 form-group">
+                            <label>Rejection reason</label>
+                            <textarea id="request-rejection"
+                                      class="form-control"
+                                      name="request-rejection"></textarea>
+                        </div>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--raised"
+                            id="submit-edit"
+                            name="submit"
+                            type="button">Submit edit</button>
+                </form>
 
             </div>
         </section>
-        <section class="mdl-layout__tab-panel" id="scroll-tab-5">
-            <div class="page-content">5</div>
-        </section>
+<!-------------------------------------------------------------------------------------------------------------->
         <section class="mdl-layout__tab-panel" id="scroll-tab-6">
             <div class="page-content">6</div>
         </section>
     </main>
 </div>
-    <script src="js/trms.js"></script>
+<script src="js/trms.js"></script>
 </body>
 </html>

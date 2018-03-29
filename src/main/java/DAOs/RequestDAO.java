@@ -1,6 +1,7 @@
 package DAOs;
 import ConnectionFactory.ConnectionFactory;
 import DataObjects.Request;
+//import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class RequestDAO {
     //TODO do something about the date the request was made
     //TODO maybe do something about Blobs
 
-
+    //Logger logger;
 
     public void newRequest(String address,
                            String city,
@@ -61,6 +62,7 @@ public class RequestDAO {
             ps.setString(13, rejectionReason);
             ps.setString(14, description);
             ResultSet resultSet = ps.executeQuery();
+            //logger.trace("New request was submitted");
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -86,7 +88,7 @@ public class RequestDAO {
                         rs.getString("STATE"),
                         rs.getInt("ZIP"),
                         rs.getFloat("COST"),
-                        "asdf", //this.getFormat(rs.getInt("GRADING_FORMAT")), // TODO deal with this
+                        "Letter grade", //this.getFormat(rs.getInt("GRADING_FORMAT")), // TODO deal with this
                         rs.getString("JUSTIFICATION"),
                         rs.getInt("BLOB_ID"),
                         null,                                // TODO, deal with this later

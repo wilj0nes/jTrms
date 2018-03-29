@@ -44,11 +44,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>RequestAllServlet</servlet-name>
-        <servlet-class>Servlets.RequestAllServlet</servlet-class>
+        <servlet-name>UpdateRequestServlet</servlet-name>
+        <servlet-class>Servlets.UpdateRequestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>RequestAllServlet</servlet-name>
-        <url-pattern>/requestAll</url-pattern>
+        <servlet-name>UpdateRequestServlet</servlet-name>
+        <url-pattern>/update-request</url-pattern>
     </servlet-mapping>
 </web-app>

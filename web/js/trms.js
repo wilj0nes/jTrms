@@ -3,9 +3,9 @@ var user, requests;
 window.onload = function () {
     document.getElementById("submit").addEventListener("click", submitData);
     document.getElementById("logout").addEventListener("click", logout);
+    document.getElementById("submit-edit").addEventListener("click", updateRequest);
     getUser();
 };
-
 
 function getUser(){
     console.log("getUser()");
@@ -75,10 +75,7 @@ function setData() {
 
 function populateTables(tableId, requests, personalize){
 
-    //console.log("--> " + tableId);
-
     for(var i = 0; i < requests.length; i++){
-
 
         if(personalize || requests[i].ownerID === user.id){
 
@@ -129,13 +126,13 @@ function populateTables(tableId, requests, personalize){
                 // status
                 var status = row.insertCell(-1);
                 status.innerHTML = requests[i].status;
-                if(status.innerHTML === "pending"){
+                if(status.innerHTML === "Pending"){
                     status.style.backgroundColor = "yellow";
                 }
-                else if (status.innerHTML === "rejected"){
+                else if (status.innerHTML === "Rejected"){
                     status.style.backgroundColor = "red";
                 }
-                else if(status.innerHTML === "approved"){
+                else if(status.innerHTML === "Approved"){
                     status.style.backgroundColor = "green";
                 }
 
@@ -143,15 +140,34 @@ function populateTables(tableId, requests, personalize){
                 var type = row.insertCell(-1);
                 type.innerHTML = requests[i].type;
 
-            row.className = requests[i].id;
-            row = document.addEventListener("click", editRequest(row.className), true);
+            row.id = tableId + "-" + requests[i].id;
+            row.className = "table-row";
         }
-
     }
+    document.getElementById(tableId).addEventListener("click", function (e) {
+        if(e.target && e.target.nodeName == "TD") {
+            editRequest(e.path[1].id, requests);
+        }
+    })
 }
 
-function editRequest(id){
-    console.log("Edit request --> " + id);
+function editRequest(selectedId, reqs){
+    var str = selectedId.split("-");
+    var id = str[3];
+    document.getElementById("edit-request").click();
+    for(var i = 0; i < reqs.length; i++){
+        if(reqs[i].id == id){
+            document.getElementById("request-id").innerText = "Request ID #" + id;
+            document.getElementById("request-address").value = String(reqs[i].address);
+            document.getElementById("request-city").value = reqs[i].city;
+            document.getElementById("request-state").value = reqs[i].state;
+            document.getElementById("request-zip").value = reqs[i].zip;
+            document.getElementById("request-description").value = reqs[i].description;
+            document.getElementById("request-date-and-time").value = reqs[i].dateTime;
+            document.getElementById("request-cost").value = reqs[i].cost;
+            document.getElementById("request-rejection").value = reqs[i].rejectionReason;
+        }
+    }
 }
 
 
@@ -159,14 +175,45 @@ function submitData() {
     console.log("submitData()");
 
     window.location.replace("trms.html");
-    document.getElementById("table-body-all").innerHTML = "";
+    // document.getElementById("table-body-all").innerHTML = "";
     document.getElementById("table-body-personal").innerHTML = "";
     requests = null;
 
     setData();
     if(user.type !== 2){
-        //getAllRequests();
+        document.getElementById("table-body-all").innerHTML = "";
+
     }
+}
+
+function updateRequest() {
+    var id = document.getElementById("request-id").innerText;
+    id = id.split("#");
+    id = id[1];
+    var rejectionReason = document.getElementById("request-rejection").value;
+    var status = document.querySelector('input[name="options"]:checked').value;
+    console.log(status + ", " + rejectionReason);
+    var newStatus;
+    if(status == 1){
+        newStatus = "Approved";
+    }
+    else if(status == 2){
+        newStatus = "Rejected";
+    }
+    else{
+        newStatus = "Pending";
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4 && xhr.status === 200){
+            console.log("sending: " + id + ", " + newStatus + ", " + rejectionReason);
+            setData();
+        }
+    };
+    xhr.open("POST", 'update-request', true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("RequestUpdatePOJO=" + JSON.stringify({id:Number(id), status:newStatus, rejectionReason:rejectionReason}));
 }
 
 function logout(){
@@ -176,10 +223,9 @@ function logout(){
             console.log("Logging out...");
             // user = null;
             // requests = null;
-            // allRequests = null;
             window.location.replace("index.html");
         }
-    }
+    };
     xhr.open("GET", "/logout", true);
     xhr.send();
 }

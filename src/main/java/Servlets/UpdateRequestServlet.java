@@ -2,6 +2,7 @@ package Servlets;
 
 import DAOs.RequestDAO;
 import DataObjects.Request;
+import POJOs.RequestUpdatePOJO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
@@ -13,28 +14,22 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//@WebServlet(name = "RequestAllServlet")
-public class RequestAllServlet extends HttpServlet {
+//@WebServlet(name = "UpdateRequestServlet")
+public class UpdateRequestServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("UpdateRequestServlet()");
         ObjectMapper om = new ObjectMapper();
         RequestDAO rDao = new RequestDAO();
-        //HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
+        RequestUpdatePOJO requestUpdate = om.readValue(request.getParameter("RequestUpdatePOJO"), RequestUpdatePOJO.class);
 
-        ArrayList<Request> allRequests = rDao.getAllRequests();
-        String allRequestsString = om.writeValueAsString(allRequests);
-
-        //session.setAttribute("allRequests", allRequests);
-
-        response.getWriter().write(allRequestsString);
-        String requestString = om.writeValueAsString(allRequests);
-        response.getWriter().write(requestString);
+        rDao.updateStatus(requestUpdate.getId(), requestUpdate.getStatus());
+        rDao.updateRejection(requestUpdate.getId(), requestUpdate.getRejectionReason());
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
 }

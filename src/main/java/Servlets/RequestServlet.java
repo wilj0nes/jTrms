@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//@WebServlet(name = "RequestServlet")
+//@WebServlet(name = "request")
 public class RequestServlet extends HttpServlet {
 
     @Override

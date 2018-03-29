@@ -6,6 +6,7 @@
 .requests{
     margin:1em auto;
     /*overflow-x: scroll;*/
+    cursor: pointer;
 }
 
 .new-request-form{
